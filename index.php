@@ -1,21 +1,23 @@
 <?php 
 
-require_once("vendor/autoload.php");
+require_once("vendor/autoload.php");//chamo todos os arquivos
 
-$app = new \Slim\Slim();
+use \Slim\Slim;//especifico os arquivos
+use \Hcode\Page;
+
+$app = new Slim();//novas rotas
 
 $app->config('debug', true);
 
+/*qual a rota que estou chamando*/
 $app->get('/', function() {
     
-	$sql = new \Hcode\DB\Sql();
+	$page = new Page();
 
-	$results=$sql->select("SELECT * FROM tb_users");
-
-	echo json_encode($results);
+	$page->setTpl("index");
 
 });
 
-$app->run();
+$app->run();//faz rodar
 
  ?>
